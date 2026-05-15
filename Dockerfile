@@ -21,4 +21,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progre
 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache || true
 
-CMD ["sh", "-c", "ls -la vendor/autoload.php && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"]
+CMD sh -c 'php artisan serve --host=0.0.0.0 --port="${PORT}"'
