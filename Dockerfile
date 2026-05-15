@@ -22,3 +22,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progre
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache || true
 
 CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
+CMD ["sh", "-c", "php artisan migrate --force && php -S 0.0.0.0:8080 -t public"]
