@@ -15,6 +15,10 @@ RUN apt-get update \
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+COPY composer.json composer.lock /var/www/html/
+
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+
 COPY . /var/www/html
 
 RUN usermod -u 1000 www-data \
