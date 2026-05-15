@@ -1,0 +1,63 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: calculator_app
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - calculator_network
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:alpine
+    container_name: calculator_nginx
+    ports:
+      - "8086:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - calculator_network
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: calculator_db
+    restart: unless-stopped
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_DATABASE: calculator
+      MYSQL_ROOT_PASSWORD: mysqlroot
+    volumes:
+      - calculator_mysql_data:/var/lib/mysql
+    networks:
+      - calculator_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: calculator_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8087:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: mysqlroot
+    networks:
+      - calculator_network
+    depends_on:
+      - db
+
+networks:
+  calculator_network:
+    driver: bridge
+
+volumes:
+  calculator_mysql_data:
+    driver: local

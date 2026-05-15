@@ -1,0 +1,77 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer components {
+    .card {
+        @apply rounded-lg border border-zinc-800 bg-zinc-950 shadow-[0_18px_60px_rgba(0,0,0,0.32)];
+    }
+
+    .nav-link {
+        @apply rounded-lg px-4 py-2 text-sm font-bold text-zinc-300 transition hover:bg-zinc-800 hover:text-yellow-300;
+    }
+
+    .nav-link-active {
+        @apply bg-yellow-400 text-black hover:bg-yellow-300 hover:text-black;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-lg bg-yellow-400 px-5 py-3 text-sm font-black text-black shadow-sm transition hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-200;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900 px-5 py-3 text-sm font-black text-zinc-100 transition hover:border-yellow-400 hover:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-yellow-900/40;
+    }
+
+    .btn-small {
+        @apply inline-flex items-center justify-center rounded-lg bg-yellow-400 px-3 py-2 text-xs font-black text-black transition hover:bg-yellow-300;
+    }
+
+    .btn-small-danger {
+        @apply inline-flex items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-xs font-black text-zinc-100 transition hover:border-red-500 hover:bg-red-950 hover:text-red-200;
+    }
+
+    .label {
+        @apply mb-2 block text-sm font-black text-zinc-100;
+    }
+
+    .input {
+        @apply w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-zinc-50 outline-none transition placeholder:text-zinc-500 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-900/40;
+    }
+
+    .error {
+        @apply mt-2 text-sm font-semibold text-red-300;
+    }
+
+    .breakdown-row {
+        @apply flex items-center justify-between gap-4 rounded-lg border border-zinc-800 bg-zinc-900/60 px-4 py-3 text-zinc-200;
+    }
+
+    .table {
+        @apply min-w-full divide-y divide-zinc-800 text-left text-sm text-zinc-200;
+    }
+
+    .table th {
+        @apply bg-zinc-900 px-6 py-4 text-xs font-black uppercase tracking-[0.12em] text-zinc-400;
+    }
+
+    .table td {
+        @apply border-t border-zinc-800 px-6 py-4 align-middle;
+    }
+
+    .status-active {
+        @apply inline-flex rounded-full bg-yellow-400 px-3 py-1 text-xs font-black text-black;
+    }
+
+    .status-inactive {
+        @apply inline-flex rounded-full bg-zinc-800 px-3 py-1 text-xs font-black text-zinc-400;
+    }
+}
