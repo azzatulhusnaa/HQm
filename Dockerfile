@@ -21,4 +21,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progre
 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache || true
 
-CMD sh -c 'php artisan serve --host=0.0.0.0 --port="${PORT}"'
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
